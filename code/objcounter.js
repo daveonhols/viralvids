@@ -2,7 +2,7 @@
 const moment = require("moment");
 const AVLTree = require("dsjslib").AVLTree;
 
-function OCounter(docs) {
+function OCounter(docs, storage_provider) {
   function compNum(a, b) {
     if (b.num === a.num) {
       const objComp = (a.url === b.url);
@@ -17,18 +17,16 @@ function OCounter(docs) {
   const counter = new AVLTree(compNum);
   const flat = {};
 
-  function toString() {
-    return `${JSON.stringify(flat)} :: ${JSON.stringify(counter)}`;
-  }
-
   console.log(`initialising with docs:: ${docs.length} :: ${JSON.stringify(docs)}`);
   docs.forEach(doc => counter.put(doc.key, doc.value));
   docs.forEach((doc) => { flat[doc.key.url] = doc.key.num; });
-
-  console.log(`initialised to :: ${toString()}`);
+  console.log("initialised");
 
   this.incr = function incr(url, tweet_meta) {
     console.log(`putting url | tweet_meta:  ${JSON.stringify([url, JSON.stringify(tweet_meta)])}`);
+    if (url === null) {
+      return;
+    }
     let num = (url in flat) ? flat[url] : 0;
     const prev_key = { num, url };
     num += 1;
@@ -40,7 +38,6 @@ function OCounter(docs) {
       const found = counter.get(prev_key);
       if (found === undefined) {
         console.log("FOUND UNDEFINED");
-        console.log(toString());
         return;
       }
       Array.prototype.push.apply(found.value, meta);
@@ -58,6 +55,11 @@ function OCounter(docs) {
     const result = [];
     counter.traverse(item => result.push({ key: item.key, value: item.value }));
     return result;
+  };
+
+  this.save = function save() {
+    storage_provider.clearAll();
+    storage_provider.insertAll(this.flatten());
   };
 
   function purge_one(purge_key, purge_after) {
@@ -94,4 +96,5 @@ function OCounter(docs) {
     }
   };
 }
+
 exports.OCounter = OCounter;

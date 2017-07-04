@@ -6,8 +6,10 @@ const request = require('request');
 const b64 = require("base-64")
 const urlencode = require('urlencode');
 
-const key = "niXGKMgdQalUtb7l128twvH5W";
-const secret = "Fae4Lz2Hi5eSV4DTby9xiIoPbsle0EDgsiqwZkNZ6TNkHyfeZh";
+const Secrets = require("../secrets/secret.js");
+
+const key = Secrets.getSecret("consumer_key");
+const secret = Secrets.getSecret("consumer_secret");
 
 const rawHeader = urlencode(key) + ":" + urlencode(secret);
 const authHeader = b64.encode(rawHeader);

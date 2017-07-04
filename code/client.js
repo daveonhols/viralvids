@@ -1,11 +1,12 @@
 
 const Twitter = require("twitter");
+const Secrets = require("../secrets/secret.js");
 
 const client = new Twitter({
-  consumer_key: "niXGKMgdQalUtb7l128twvH5W",
-  consumer_secret: "Fae4Lz2Hi5eSV4DTby9xiIoPbsle0EDgsiqwZkNZ6TNkHyfeZh",
-  access_token_key: "1017813937-3CPVDR2Sj1s5zEVGUVgwVsiCzN4vLqTMIQ5uqQO",
-  access_token_secret: "AU6cwhnYeo0VnVituDGWBpCDlEwhDB4l9LnqZVzTlfeia"
+  consumer_key: Secrets.getSecret("consumer_key"),
+  consumer_secret: Secrets.getSecret("consumer_secret"),
+  access_token_key: Secrets.getSecret("access_token_key"),
+  access_token_secret: Secrets.getSecret("access_token_secret")
 });
 
 exports.client = client;

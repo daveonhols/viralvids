@@ -1,2 +1,4 @@
-./secrets/*
-./idea/
+secrets/
+.idea/*
+node_modules
+public
