@@ -1,0 +1,31 @@
+{
+    "extends": "airbnb-base",
+    "plugins": [
+        "import"
+    ],
+    "env": {
+      "jquery": true
+    },
+    "rules": {
+
+      "camelcase": "off",
+      "no-console":0,
+      "comma-dangle":0,
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "quotes": [
+        "error",
+        "double"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ]
+    },
+    "globals": {
+      "document": true,
+      "window": true
+    }
+}
