@@ -16,17 +16,17 @@ function getDb() {
   return raw_connection;
 }
 
-function getMongoStorageProvider() {
+function getMongoStorageProvider(collection) {
   return {
     clearAll: function clearAll() {
       getDb()
-        .then(db => db.collection("start"))
+        .then(db => db.collection(collection))
         .then(col => col.deleteMany({}));
     },
 
     insertAll: function insertAll(items) {
       getDb()
-        .then(db => db.collection("start"))
+        .then(db => db.collection(collection))
         .then(col => items.forEach(item => col.insertOne(item)));
     }
   };
