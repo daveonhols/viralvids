@@ -19,16 +19,32 @@ function getDb() {
 function getMongoStorageProvider(collection) {
   return {
     clearAll: function clearAll() {
-      getDb()
-        .then(db => db.collection(collection))
-        .then(col => col.deleteMany({}));
+      const done =
+        getDb()
+          .then(db => db.collection(collection))
+          .then(col => col.deleteMany({}));
+
+      return done;
     },
 
     insertAll: function insertAll(items) {
-      getDb()
-        .then(db => db.collection(collection))
-        .then(col => items.forEach(item => col.insertOne(item)));
+      const done =
+        getDb()
+          .then(db => db.collection(collection))
+          .then(col => items.forEach(item => col.insertOne(item)));
+
+      return done;
+    },
+
+    getAll: function getAll() {
+      const done =
+        getDb()
+          .then(db => db.collection(collection))
+          .then(col => col.find({}, { _id: 0 }).toArray());
+
+      return done;
     }
+
   };
 }
 

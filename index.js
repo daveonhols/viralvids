@@ -44,7 +44,7 @@ function initStream(docs, storage_provider) {
 }
 
 mongo.getDb()
-  .then(db => db.collection(search_key))
+  .then(db => db.collection(`raw.${search_key}`))
   .then(col => col.find({}, { _id: 0 }).toArray())
-  .then(docs => initStream(docs, mongo.getMongoStorageProvider(search_key)));
+  .then(docs => initStream(docs, mongo.getMongoStorageProvider(`raw.${search_key}`)));
 

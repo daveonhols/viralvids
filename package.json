@@ -4,7 +4,7 @@
   "description": "twitter search for ratio tweets",
   "main": "index.js",
   "scripts": {
-    "clean": "rm -f ./data/__test* ./public/js/*",
+    "clean": "exit 0",
     "prelint": "npm run clean",
     "lint": "./node_modules/.bin/eslint index.js ./code/*.js ./public/*.js ./db/*.js & exit 0",
     "pretest": "npm run lint",
