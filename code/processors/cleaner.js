@@ -1,6 +1,6 @@
 const Url = require("url");
 
-const Counter = require("./objcounter.js").OCounter;
+const Counter = require("../helpers/urlcounter.js").OCounter;
 
 function store(cleaned_storage_provider, cleaned_tweets) {
   const done =
@@ -21,6 +21,30 @@ function is_youtube(t_url) {
   return result;
 }
 
+function get_video_id(url) {
+  let video_id = "";
+
+  const parse_url = Url.parse(url, true);
+
+  if (parse_url.hostname.endsWith("youtube.com")) {
+    video_id = parse_url.query.v;
+  }
+  if (parse_url.hostname.endsWith("youtu.be")) {
+    video_id = parse_url.pathname.slice(1);
+  }
+  if (video_id === null || video_id === undefined) {
+    return null;
+  }
+  return video_id;
+}
+
+function enrich(item) {
+  const enriched = item;
+  const video_id = get_video_id(item.key.url);
+  enriched.key.id = video_id;
+  return enriched;
+}
+
 function deduplicate(collection) {
   const counter = new Counter([]);
 
@@ -30,20 +54,13 @@ function deduplicate(collection) {
     item => item.value.forEach(
       tweet_meta => counter.incr(item.key.url, tweet_meta)));
 
-  return counter.flatten();
+  return counter.flatten().map(item => enrich(item));
 }
 
 function canonical_url(url) {
   const base = "http://youtu.be/";
-  let video_id = "";
-  const parse_url = Url.parse(url, true);
-  if (parse_url.hostname.endsWith("youtube.com")) {
-    video_id = parse_url.query.v;
-  }
-  if (parse_url.hostname.endsWith("youtu.be")) {
-    video_id = parse_url.pathname.slice(1);
-  }
-  if (video_id === null || video_id === undefined) {
+  const video_id = get_video_id(url);
+  if (video_id === null) {
     return null;
   }
   return base + video_id;

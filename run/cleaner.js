@@ -1,5 +1,5 @@
-const cleaner = require("./../code/cleaner.js");
-const db = require("./../db/mongo.js");
+const cleaner = require("./../code/processors/cleaner.js");
+const db = require("./../datastore/mongostore.js");
 const commandLineArgs = require("command-line-args");
 
 const optionDefinitions = [

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> head }}
+<body>
+
+{{> nav }}
+
+<div class="jumbotron">
+    <div class="container text-center">
+        <h1>Viral Videos</h1>
+        <p>What is this?</p>
+    </div>
+</div>
+
+<div class="container-fluid bg-3">
+    <div class="row">
+        <div class="about-box col-lg-2 col-md-2 col-md-offset-3 col-lg-offset-3">
+            <h3 class="text-center">What</h3>
+            <p>A proof of concept / portfolio site, tracking Youtube video mentions on Twitter. Stay up to date on the most viral Youtube videos on Twitter in a variety of categories as we track them in real time.</p>
+        </div>
+        <div class="about-box col-lg-2 col-md-2">
+            <h3 class="text-center">How</h3>
+            <p>We run a node.js back end using the Twitter API to listen for tweets that mention Youtube videos across a range of categories of interest.  Each mention is counted, aggregated and sorted in real time and stored in a Mongo DB collection.  This express driven front end serves up the underlying data for users to see the videos</p>
+        </div>
+        <div class="about-box col-lg-2 col-md-2">
+            <h3 class="text-center">Who</h3>
+            <p>David Smith, an experienced back end and data driven developer.</p>
+        </div>
+    </div>
+</div><br>
+
+{{> footer }}
+
+</body>
+</html>
