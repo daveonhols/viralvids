@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> head }}
+<body>
+
+{{> nav }}
+
+<div class="jumbotron">
+    <div class="container text-center">
+        <h1>{{category}}</h1>
+        <p>Videos going viral now: {{category}}</p>
+        <p>#nofilter - think before you click</p>
+    </div>
+</div>
+
+<div class="container-fluid bg-3 text-center">
+    <br>
+    <div class="row">
+
+        {{#each videos}}
+            {{> video }}
+        {{/each}}
+    </div>
+</div><br>
+
+{{> footer }}
+
+</body>
+</html>

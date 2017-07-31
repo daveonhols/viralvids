@@ -1,6 +1,6 @@
 
 const Twitter = require("twitter");
-const Secrets = require("../secrets/secret.js");
+const Secrets = require("../../secrets/secret.js");
 
 const client = new Twitter({
   consumer_key: Secrets.getSecret("consumer_key"),

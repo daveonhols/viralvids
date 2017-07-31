@@ -1,6 +1,6 @@
 const expect = require("chai").expect;
-const store = require("./../code/arraystore.js");
-const cleaner = require("./../code/cleaner.js");
+const store = require("./../datastore/arraystore.js");
+const cleaner = require("./../code/processors/cleaner.js");
 
 it("test cleaner can consolidate", function() {
 

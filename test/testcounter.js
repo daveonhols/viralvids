@@ -2,7 +2,7 @@
 
 const expect = require("chai").expect;
 const moment = require("moment");
-const urlCounter = require("./../code/objcounter.js").OCounter;
+const urlCounter = require("./../code/helpers/urlcounter.js").OCounter;
 
 it("try adding to the counter", function() {
   const countTweets = new urlCounter([]);

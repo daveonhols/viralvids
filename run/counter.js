@@ -1,10 +1,10 @@
 const moment = require("moment");
 const commandLineArgs = require("command-line-args");
 
-const UrlCounter = require("./code/objcounter.js").OCounter;
-const mongo = require("./db/mongo.js");
-const client = require("./code/client.js").client;
-const handleTweetEvent = require("./code/eventhandler.js").handleTweetEvent;
+const UrlCounter = require("../code/helpers/urlcounter.js").OCounter;
+const mongo = require("../datastore/mongostore.js");
+const client = require("../code/tweetsource/client.js").client;
+const handleTweetEvent = require("../code/tweetsource/eventhandler.js").handleTweetEvent;
 
 const optionDefinitions = [
   { name: "search", alias: "s", type: String }

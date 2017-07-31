@@ -2,9 +2,9 @@
 
 const expect = require("chai").expect;
 
-const urlCounter = require("./../code/objcounter.js").OCounter;
-const eventHandler = require("./../code/eventhandler.js").handleTweetEvent;
-const store = require("./../code/arraystore.js");
+const urlCounter = require("./../code/helpers/urlcounter.js").OCounter;
+const eventHandler = require("./../code/tweetsource/eventhandler.js").handleTweetEvent;
+const store = require("./../datastore/arraystore.js");
 
 it("Add with store", function() {
 

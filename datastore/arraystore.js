@@ -1,5 +1,5 @@
 
-function getArrayStorageProvider(store_to) {
+function getArrayStorageProvider(store_to, categories) {
   return {
     clearAll: function clearAll() {
       // used for testing, this array is simulating a mongo collection, so we need to modify it
@@ -11,6 +11,22 @@ function getArrayStorageProvider(store_to) {
     insertAll: function insertAll(items) {
       items.forEach(item => store_to.push(item));
       return Promise.resolve();
+    },
+
+    getAllCategories: function getAllCategories() {
+      return new Promise(resolve => resolve(categories));
+    },
+
+    getTopForCategory: function getTopForCategory() {
+      return new Promise(resolve => resolve(store_to));
+    },
+
+    getTopOverall: function getTopOverall() {
+      return new Promise(resolve => resolve(store_to));
+    },
+
+    getVideoTweets: function getVideoTweets() {
+      return new Promise(resolve => resolve(store_to));
     },
 
     getAll: function getAll() {
